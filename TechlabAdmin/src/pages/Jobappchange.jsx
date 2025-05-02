@@ -23,6 +23,14 @@ function Jobappchange() {
 
   console.log(data)
 
+  const [selectOption, setSelectOption] = useState(null)
+
+  const hlChangeOption = (e) => {
+    setSelectOption(e.target.value);
+
+  }
+
+
   return (
     <>
 
@@ -47,15 +55,14 @@ function Jobappchange() {
               {/* --------------2------------------ */}
               <div className='w-full h-auto text-center mt-[3%]' >
                 <p className='text-[14px] text-[gray]'>Change Application Status</p>
-                <select name="" id="" className='mt-6 bg-[white] shadow-xl border-[dimgray] w-[280px] h-[40px] rounded-[7px] ps-3'>
-                  <option value="new">New Application</option>
-                  <option value="screening">Screening</option>
-                  <option value="interview">Interview</option>
-                  <option value="Reject">Reject</option>
-                  <option value="offer">Offer</option>
-                  <option value="hire">Hired</option>
+                <select name="" id="" onChange={hlChangeOption} className='mt-6 bg-[white] shadow-xl border-[dimgray] w-[280px] h-[40px] rounded-[7px] ps-3'>
+                  <option value="Rounds1">New Application</option>
+                  <option value="Rounds2">Screening</option>
+                  <option value="Rounds3">Interview</option>
+                  <option value="Rounds5">Offer</option>
+                  <option value="Rounds6">Hired</option>
+                  <option value="Rounds4">Reject</option>
                 </select>
-
               </div>
 
 
@@ -100,14 +107,15 @@ function Jobappchange() {
 
                 {/* -------------Step-Section--------------- */}
 
-                <div className='h-[auto] xl:h-[9.9rem]  w-[100%] gap-4 xl:flex xl:justify-between sm:grid sm:grid-cols-2  md:grid md:grid-cols-3   xl:grid xl:grid-cols-6   pt-5'>
+                <div className={`h-[auto] xl:h-[9.9rem]  w-[100%] gap-4 sm:grid sm:grid-cols-2  md:grid md:grid-cols-3 ${selectOption === 'Rounds4' ? 'xl:grid xl:grid-cols-4' : 'xl:grid xl:grid-cols-5'}  pt-5`}>
 
 
                   {/* --------1-------- */}
-                  <div className='flex flex-col justify-center items-center mt-7 xl:mt-0' >
 
-                    <div className='w-[4rem] h-[4rem] shadow-2xl rounded-[100rem] flex justify-center items-center' id='Rounds' >
-                      <RiUserAddLine className='text-[1.5rem] text-[#64748B] ' />
+                  <div className='flex flex-col justify-center items-center items-center mt-7 xl:mt-0' >
+
+                    <div className={`${selectOption === 'Rounds1' ? 'bg-[#0F172A] text-[white]' : 'bg-[#e2f1ff] text-[#64748B]'}  w-[4rem] h-[4rem] shadow-2xl rounded-[100rem] flex justify-center items-center`}   >
+                      <RiUserAddLine className='text-[1.5rem] ' />
                     </div>
 
                     <div className='w-full text-center pt-3'>
@@ -117,24 +125,24 @@ function Jobappchange() {
                   </div>
 
                   {/* --------2-------- */}
-                  <div className='flex flex-col justify-center items-center mt-7 xl:mt-0' >
+                  <div className='flex flex-col justify-center items-center mt-7 xl:mt-0'>
 
-                    <div className='w-[4rem] h-[4rem] shadow-2xl rounded-[100rem] flex justify-center items-center' id='Rounds' >
-                      <RiSearchLine className='text-[1.5rem] text-[#64748B]' />
+                    <div className={`${selectOption === 'Rounds2' ? 'bg-[#FBBF24] text-[white]' : 'bg-[#e2f1ff] text-[#64748B]'} w-[4rem] h-[4rem] shadow-2xl rounded-[100rem] flex justify-center items-center`}  >
+                      <RiSearchLine className='text-[1.5rem]' />
                     </div>
 
                     <div className='w-full text-center pt-3'>
                       <p className='text-[1rem]'>Screening</p>
                       <p className='text-[0.8rem] text-[gray]'>Resume review</p>
                     </div>
-
+    
                   </div>
 
                   {/* --------3-------- */}
                   <div className='flex flex-col justify-center items-center mt-7 xl:mt-0'>
 
-                    <div className='w-[4rem] h-[4rem] shadow-2xl  rounded-[100rem] flex justify-center items-center' id='Rounds'>
-                      <RiCalendarLine className='text-[1.5rem] text-[#64748B]' />
+                    <div className={`${selectOption === 'Rounds3' ? 'bg-[#60A5FA] text-[white]' : 'bg-[#e2f1ff] text-[#64748B]'} w-[4rem] h-[4rem] shadow-2xl  rounded-[100rem] flex justify-center items-center`} >
+                      <RiCalendarLine className='text-[1.5rem]' />
                     </div>
 
                     <div className='w-full text-center pt-3'>
@@ -145,10 +153,10 @@ function Jobappchange() {
                   </div>
 
                   {/* --------4-------- */}
-                  <div className='flex flex-col justify-center items-center mt-7 xl:mt-0' >
+                  <div className={`${selectOption === 'Rounds4' ? 'block' : 'hidden'} flex flex-col justify-center items-center mt-7 xl:mt-0`}>
 
-                    <div className='w-[4rem] h-[4rem] shadow-2xl  rounded-[100rem] flex justify-center items-center' id='Rounds'>
-                      <RiUserUnfollowLine className='text-[1.5rem] text-[#64748B]' />
+                    <div className={`${selectOption === 'Rounds4' ? 'bg-[red] text-[white]' : 'bg-[#e2f1ff] text-[#64748B]'} w-[4rem] h-[4rem] shadow-2xl  rounded-[100rem] flex justify-center items-center`}>
+                      <RiUserUnfollowLine className='text-[1.5rem]' />
                     </div>
 
                     <div className='w-full text-center pt-3'>
@@ -159,10 +167,10 @@ function Jobappchange() {
                   </div>
 
                   {/* --------5-------- */}
-                  <div className='flex flex-col justify-center items-center mt-7 xl:mt-0'>
+                  <div className={`${selectOption === 'Rounds4' ? 'hidden' : 'block'} flex flex-col justify-center items-center mt-7 xl:mt-0`}>
 
-                    <div className='w-[4rem] h-[4rem] shadow-2xl  rounded-[100rem] flex justify-center items-center' id='Rounds' >
-                      <RiMailLine className='text-[1.5rem] text-[#64748B]' />
+                    <div className={`${selectOption === 'Rounds5' ? 'bg-[#34D399] text-[white]' : 'bg-[#e2f1ff] text-[#64748B]'} w-[4rem] h-[4rem] shadow-2xl  rounded-[100rem] flex justify-center items-center`} >
+                      <RiMailLine className='text-[1.5rem]' />
                     </div>
 
                     <div className='w-full text-center pt-3'>
@@ -173,10 +181,10 @@ function Jobappchange() {
                   </div>
 
                   {/* --------6-------- */}
-                  <div className='flex flex-col justify-center items-center mt-7 xl:mt-0'>
+                  <div className={`${selectOption === 'Rounds4' ? 'hidden' : 'block'} flex flex-col justify-center items-center mt-7 xl:mt-0`}>
 
-                    <div className='w-[4rem] h-[4rem] shadow-2xl rounded-[100rem] flex justify-center items-center' id='Rounds'>
-                      <RiUserShared2Line className='text-[1.5rem] text-[#64748B]' />
+                    <div className={`${selectOption === 'Rounds6' ? 'bg-[#A855F7] text-[white]' : 'bg-[#e2f1ff] text-[#64748B]'}  w-[4rem] h-[4rem] shadow-2xl rounded-[100rem] flex justify-center items-center`}>
+                      <RiUserShared2Line className='text-[1.5rem]' />
                     </div>
 
                     <div className='w-full text-center pt-3'>

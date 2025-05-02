@@ -23,11 +23,11 @@ function Asiderbar() {
     >
      
       <div className='w-full h-[6rem] flex items-center justify-between px-4'>
-        <img
+        <Link to={'/dashboard'}><img
           src='https://www.techlabbusiness.com/admin/images/icon/Untitled%20(500%20x%20500%20px)%20(1).png'
           alt='Logo'
           className='w-[5.5rem]'
-        />
+        /></Link>
      
         
         <button

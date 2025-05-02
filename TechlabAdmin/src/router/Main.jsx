@@ -12,6 +12,7 @@ import Privaterouter from '../components/Privaterouter'
 import Jobdetails from '../pages/Jobdetails'
 import Jobappchange from '../pages/Jobappchange'
 import Dashboard from '../pages/Dashboard'
+import Selectop from '../components/Selectop'
 
 
 function Main() {
@@ -29,6 +30,7 @@ function Main() {
         <Route path='/jobapplication' element={<Privaterouter> <Jobapplication /> </Privaterouter>}></Route>
         <Route path='/jobappchange/:id' element={<Privaterouter> <Jobappchange /> </Privaterouter>}></Route>
         <Route path='/dashboard' element={<Privaterouter> <Dashboard /></Privaterouter>} ></Route>
+        <Route path='/Option' element={<Selectop/>}></Route>
       </Routes>
     </div>
   )
