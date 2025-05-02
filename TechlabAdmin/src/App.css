@@ -1,0 +1,87 @@
+*{
+  font-family: "Poppins", sans-serif;
+}
+
+#link-list{
+  font-size: 17px;
+  overflow: auto;
+}
+
+
+#links-div{
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+  color: dimgray;
+}
+
+
+#link-icon{
+  position: absolute;
+  right: 15px;
+  top: 5px;
+}
+
+#li-dropdown1{
+  list-style: disc;
+  /* display: none; */
+}
+
+#li-dropdown2{
+  list-style: disc;
+  /* display: none; */
+}
+
+#li-dropdown3{
+  list-style: disc;
+  /* display: none; */
+}
+#li-dropdown4{
+  list-style: disc;
+  /* display: none; */
+}
+#li-dropdown5{
+  list-style: disc;
+  display: none;
+}
+
+
+#content-sec{
+  overflow: auto;
+}
+
+#content-sec::-webkit-scrollbar{
+  width: 0%;
+}
+
+#aside-scroll{
+  overflow: auto;
+}
+
+#aside-scroll::-webkit-scrollbar{
+  width: 0%;
+}
+
+#applyform{
+  box-shadow: 0px 1px 10px 0px rgb(179, 179, 179);
+}
+
+
+/* Job Application Status */
+
+#jobappbtn1:hover{
+  box-shadow: 0px 0px 10px 0px rgb(165, 165, 165);
+}
+
+#Rounds{
+  background-color: #e2f1ff;
+}
+
+
+/* jobapplication-changes */
+
+#jobapplyname{
+  text-shadow: 1px 1px 2px rgba(47, 47, 47, 0.242);
+}
+
+
