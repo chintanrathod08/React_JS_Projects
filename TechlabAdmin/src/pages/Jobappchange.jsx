@@ -56,6 +56,7 @@ function Jobappchange() {
               <div className='w-full h-auto text-center mt-[3%]' >
                 <p className='text-[14px] text-[gray]'>Change Application Status</p>
                 <select name="" id="" onChange={hlChangeOption} className='mt-6 bg-[white] shadow-xl border-[dimgray] w-[280px] h-[40px] rounded-[7px] ps-3'>
+                  <option value="">New Application </option>
                   <option value="Rounds1">New Application</option>
                   <option value="Rounds2">Screening</option>
                   <option value="Rounds3">Interview</option>
@@ -103,8 +104,6 @@ function Jobappchange() {
                   <p className='text-[gray] text-[14px]'>Track your progress through the hiring process</p>
                 </div>
 
-
-
                 {/* -------------Step-Section--------------- */}
 
                 <div className={`h-[auto] xl:h-[9.9rem]  w-[100%] gap-4 sm:grid sm:grid-cols-2  md:grid md:grid-cols-3 ${selectOption === 'Rounds4' ? 'xl:grid xl:grid-cols-4' : 'xl:grid xl:grid-cols-5'}  pt-5`}>
@@ -135,7 +134,7 @@ function Jobappchange() {
                       <p className='text-[1rem]'>Screening</p>
                       <p className='text-[0.8rem] text-[gray]'>Resume review</p>
                     </div>
-    
+
                   </div>
 
                   {/* --------3-------- */}
@@ -193,8 +192,6 @@ function Jobappchange() {
                     </div>
 
                   </div>
-
-
                 </div>
               </div>
 
@@ -221,3 +218,5 @@ function Jobappchange() {
 }
 
 export default Jobappchange
+
+
