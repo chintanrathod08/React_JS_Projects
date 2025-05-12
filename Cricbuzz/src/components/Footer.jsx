@@ -15,7 +15,7 @@ function Footer() {
                         
                         
                         <div className=''>
-                            <img src="https://static.cricbuzz.com/images/cb_logo.svg" alt="" className='w-[50%]' />
+                          <Link to={'/'} ><img src="https://static.cricbuzz.com/images/cb_logo.svg" alt="" className='w-[50%]' /></Link>
                         </div>
 
                         <div className='text-[white]'>

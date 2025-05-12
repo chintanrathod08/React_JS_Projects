@@ -249,6 +249,7 @@ function Home() {
         getData()
     }, [])
 
+    //---- searching -----
     const hlChange = (e) => {
         const value = e.target.value;
         setInputData(value);
@@ -259,19 +260,7 @@ function Home() {
         setSearch(inputData)
     }
 
-    const handleEdit = (match) => {
-        if(window.confirm("Are You Sure You Want to Edit This Match Card? ✏️")){
-        setEditId(match.id)
-        setEditData({ status: match.status, score: `${match.t1s} / ${match.t2s}` })
-        }
-    }
-
-    const handleChangeEdit = (e) => {
-        const { name, value } = e.target
-        setEditData({ ...editData, [name]: value })
-    }
-
-    const filteredData = data.filter((el) => {
+     const filteredData = data.filter((el) => {
         return el.status !== "Match not started" &&
             (!search.trim() ||
                 el.series.toLowerCase().includes(search.toLowerCase()) ||
@@ -279,15 +268,33 @@ function Home() {
                 el.t2.toLowerCase().includes(search.toLowerCase()));
     });
 
+    const handleEdit = (match) => {
+        if (window.confirm("Are You Sure You Want to Edit This Match Card ✏️ ? ")) {
+            setEditId(match.id)
+            setEditData({
+                status: match.status,
+                t1s: match.t1s,
+                t2s: match.t2s
+            })
+        }
+    }
+
+    const handleChangeEdit = (e) => {
+        const { name, value } = e.target
+        setEditData((prev) => ({ ...prev, [name]: value }))
+    }
+
+
+   
+
     const handleSaveEdit = () => {
         const updated = data.map((item) => {
             if (item.id === editId) {
-                const [t1s, t2s] = editData.score.split("/")
                 return {
                     ...item,
                     status: editData.status,
-                    t1s: t1s?.trim() || item.t1s,
-                    t2s: t2s?.trim() || item.t2s
+                    t1s: editData.t1s || item.t1s,
+                    t2s: editData.t2s || item.t2s
                 }
             }
             return item
@@ -297,8 +304,9 @@ function Home() {
         setEditId(null)
     }
 
+
     const handleDelete = (id) => {
-        if (window.confirm("Are You Sure You Want to Delete This Match Card? ❌")) {
+        if (window.confirm("Are You Sure You Want to Delete This Match Card ❌ ? ")) {
             const filteredData = data.filter((item) => item.id !== id);
             setData(filteredData);
             localStorage.setItem("matchData", JSON.stringify(filteredData));
@@ -322,6 +330,8 @@ function Home() {
                         </span>
                     </div>
 
+                    {/*---- serchinput--- */}
+
                     <div className='w-auto h-[38px] flex justify-end items-center'>
                         <input type="text" onChange={hlChange} placeholder='Search Series, matches' className='ps-5 border border-[gray] w-[15rem] h-full rounded-l-full' />
 
@@ -341,7 +351,7 @@ function Home() {
                     <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-15 justify-center items-center pb-[3%]'>
 
                         {filteredData.length > 0 ? filteredData.map((el) => (
-                            <div key={el.id} className='card w-[28.5rem] h-[25rem] rounded-[10px] bg-[#ECF0F1] shadow-xl flex flex-col justify-evenly items-center'>
+                            <div key={el.id} className='card w-[100%] h-[25rem] rounded-[10px] bg-[#ECF0F1] shadow-xl flex flex-col justify-evenly items-center'>
 
                                 {/*---- series ----*/}
                                 <div className='w-full h-auto text-center'>
@@ -357,8 +367,8 @@ function Home() {
                                         <p className='text-[gray] mt-2'>{el.t1s}</p>
                                     </div>
                                     <div>
-                                        <img src="https://media-hosting.imagekit.io/6ea16199e9314bb3/versus.png?Expires=1841404121&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=mTJ9J-rg0wc25xkazUcnfrAUE--dwZIpLJPmQV5SqHutGpbBmUqax-7uM7RAGEXYDYJAmzADm25kckajulDYYx2EHBtI5yvjuZF54ja6fQc90A8VjOWrfWbhXPWZOvJ-nkvIUmGb9mv~nDHNM-OvZ4ZhPysTxRmLZrEsh58rlR7SaIUJUFy3qPbRUysfNCx1bBkRCNST03wL9tMqQfTr3IMHGKhAzDd-gj1veTnjzT3w-MfhHPBDct5mIIewEEcjWjD7wqH1UWdFrPLhbLzsmkYEPqlhBmpvlGVA5~S~oOh2NbdIeyuG848GbBLDMzguwBH9vj5gYEY7nItlc0845A__" alt="" 
-                                        className='w-[3rem]'
+                                        <img src="https://media-hosting.imagekit.io/6ea16199e9314bb3/versus.png?Expires=1841404121&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=mTJ9J-rg0wc25xkazUcnfrAUE--dwZIpLJPmQV5SqHutGpbBmUqax-7uM7RAGEXYDYJAmzADm25kckajulDYYx2EHBtI5yvjuZF54ja6fQc90A8VjOWrfWbhXPWZOvJ-nkvIUmGb9mv~nDHNM-OvZ4ZhPysTxRmLZrEsh58rlR7SaIUJUFy3qPbRUysfNCx1bBkRCNST03wL9tMqQfTr3IMHGKhAzDd-gj1veTnjzT3w-MfhHPBDct5mIIewEEcjWjD7wqH1UWdFrPLhbLzsmkYEPqlhBmpvlGVA5~S~oOh2NbdIeyuG848GbBLDMzguwBH9vj5gYEY7nItlc0845A__" alt=""
+                                            className='w-[3rem]'
                                         />
                                     </div>
                                     <div className='w-[50%] h-full text-center leading-6 flex flex-col justify-start items-center'>
@@ -396,19 +406,30 @@ function Home() {
                     <div className='fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-10'>
                         <div className='bg-white p-6 rounded shadow-lg w-[400px]'>
                             <h2 className='text-lg font-bold mb-4'>Edit Match</h2>
+
                             <label className='block mb-2'>Status :</label>
-                            <input type="text"
+                            <input
+                                type="text"
                                 name="status"
                                 value={editData.status}
                                 onChange={handleChangeEdit}
                                 className="border p-2 mb-4 w-full"
                             />
 
-                            <label className='block mb-2'>Score (Format: 250/3):</label>
+                            <label className='block mb-2'>Team 1 Score (t1s):</label>
                             <input
                                 type="text"
-                                name="score"
-                                value={editData.score}
+                                name="t1s"
+                                value={editData.t1s || ''}
+                                onChange={handleChangeEdit}
+                                className="border p-2 mb-4 w-full"
+                            />
+
+                            <label className='block mb-2'>Team 2 Score (t2s):</label>
+                            <input
+                                type="text"
+                                name="t2s"
+                                value={editData.t2s || ''}
                                 onChange={handleChangeEdit}
                                 className="border p-2 mb-4 w-full"
                             />
@@ -420,6 +441,7 @@ function Home() {
                         </div>
                     </div>
                 )}
+
             </section>
         </section>
     )
